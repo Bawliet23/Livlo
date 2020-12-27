@@ -1,0 +1,55 @@
+package com.livlo.livlo.controllers;
+
+import com.livlo.livlo.entities.Client;
+import com.livlo.livlo.entities.Order;
+import com.livlo.livlo.reporsitories.IClientRepo;
+import com.livlo.livlo.security.models.JwtResponse;
+import com.livlo.livlo.security.models.MyClientDetails;
+import com.livlo.livlo.security.models.MyCourierDetails;
+import com.livlo.livlo.security.models.User;
+import com.livlo.livlo.security.tokens.SmsCodeAuthenticationToken;
+import com.livlo.livlo.services.IClientService;
+import com.livlo.livlo.services.IOrderService;
+import com.livlo.livlo.utils.JwtUtils;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/client")
+@PreAuthorize("hasAuthority('CLIENT')")
+public class ClientController {
+    @Autowired
+    private IClientService clientService;
+    @Autowired
+    private IOrderService orderService;
+
+
+    @PostMapping("/makeOrder")
+    public void makeOrder(@RequestBody Order order){
+        orderService.makeOrder(order);
+    }
+
+    @PutMapping("/confirmOrder/{id}")
+    public void confirmOrder(@PathVariable("id") Long id){
+        orderService.confirmOrder(id);
+    }
+    @GetMapping("/{id}/orders")
+    public List<Order> getMyOrders(@PathVariable("id") Long id){
+        return orderService.getOrdersByClient(id);
+    }
+     @GetMapping("/{id}")
+    public Client getUser(@PathVariable("id") Long id){
+        return clientService.findUser(id);
+    }
+
+
+
+}
