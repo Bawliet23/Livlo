@@ -51,5 +51,10 @@ public class ClientController {
     }
 
 
+    @PutMapping("/addLocation/{id}")
+    public Client addLocation(@RequestBody Client client,@PathVariable("id") Long id){
+        client.setId(id);
+        return clientService.addLocation(client);
+    }
 
 }

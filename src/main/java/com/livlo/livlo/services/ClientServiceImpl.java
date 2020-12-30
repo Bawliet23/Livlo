@@ -20,6 +20,15 @@ public class ClientServiceImpl implements IClientService {
         return null;
     }
 
+    @Override
+    public Client addLocation(Client client) {
+        Client client1 =findUser(client.getId());
+        client1.setAdress(client.getAdress());
+        client1.setLatitude(client.getLatitude());
+        client1.setLonguitude(client.getLonguitude());
+       return clientRepo.save(client1);
+
+    }
 
     @Override
     public Client findUser(Long id) {
