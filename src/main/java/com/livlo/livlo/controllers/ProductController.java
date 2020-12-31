@@ -1,7 +1,7 @@
 package com.livlo.livlo.controllers;
 
 import com.livlo.livlo.entities.Product;
-import com.livlo.livlo.security.models.Roles;
+import com.livlo.livlo.entities.Restaurant;
 import com.livlo.livlo.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,8 +24,11 @@ public class ProductController {
     List<Product> getAllProduct(){
         return productService.getAllProduct();
     }
-
-    @GetMapping("/{id}")
+    @GetMapping("/allRestaurant")
+    List<Restaurant> getAllRestaurant(){
+        return productService.getAllRestaurant();
+    }
+    @GetMapping("/restaurant/{id}")
     List<Product> getAllProductInRestaurant(@PathVariable Long id){
         return productService.getProductByRestaurant(id);
     }

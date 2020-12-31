@@ -26,6 +26,5 @@ public class Restaurant implements Serializable {
     private String image;
     @OneToMany(mappedBy="restaurant",cascade = CascadeType.ALL,fetch = FetchType.LAZY,
             orphanRemoval = true)
-    @JsonIgnore
     private List<Product> products;
 }

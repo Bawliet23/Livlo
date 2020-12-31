@@ -26,6 +26,7 @@ public class Product implements Serializable {
     private String description;
     @ManyToOne
     @JoinColumn(name="restaurant_id",nullable = false)
+    @JsonIgnore
     private Restaurant restaurant;
 
 //    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,fetch = FetchType.LAZY,

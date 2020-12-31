@@ -20,7 +20,10 @@ public class ProductService implements  IProductService {
 
         return productRepo.findAll();
     }
-
+    @Override
+    public List<Restaurant> getAllRestaurant() {
+        return restaurantRepo.findAll();
+    }
     @Override
     public List<Product> getProductByRestaurant(Long id){
         Optional<Restaurant> restaurant = restaurantRepo.findById(id);

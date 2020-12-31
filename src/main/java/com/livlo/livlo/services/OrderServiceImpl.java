@@ -2,8 +2,10 @@ package com.livlo.livlo.services;
 
 import com.livlo.livlo.entities.Client;
 import com.livlo.livlo.entities.Order;
+import com.livlo.livlo.entities.Restaurant;
 import com.livlo.livlo.reporsitories.IClientRepo;
 import com.livlo.livlo.reporsitories.IOrderRepo;
+import com.livlo.livlo.reporsitories.IRestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class OrderServiceImpl implements IOrderService {
     private IOrderRepo orderRepo;
     @Autowired
     private IClientRepo clientRepo;
+
 
     @Override
     public void makeOrder(Order order) {
@@ -38,4 +41,6 @@ public class OrderServiceImpl implements IOrderService {
         Client client = clientRepo.findClientById(id);
         return orderRepo.findByClient(client);
     }
+
+
 }
