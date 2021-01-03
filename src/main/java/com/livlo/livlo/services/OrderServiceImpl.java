@@ -8,6 +8,7 @@ import com.livlo.livlo.reporsitories.IOrderRepo;
 import com.livlo.livlo.reporsitories.IRestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public void makeOrder(Order order) {
         order.setDelivred(false);
+        order.getItems().forEach(item->item.setOrder(order));
         if( order.getDefaulAdress() ==null ||order.getDefaulAdress().isEmpty() ){
             Client client = clientRepo.findClientById(order.getClient().getId());
             order.setDefaulAdress(client.getAdress());
@@ -35,6 +37,7 @@ public class OrderServiceImpl implements IOrderService {
         order.setDelivred(true);
         orderRepo.save(order);
     }
+
 
     @Override
     public List<Order> getOrdersByClient(Long id) {

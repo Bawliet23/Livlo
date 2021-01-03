@@ -1,6 +1,7 @@
 package com.livlo.livlo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class ProductsOrder implements Serializable {
     private int quantity;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="order_id")
+    @JsonBackReference
     private Order order;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id" ,nullable = false)

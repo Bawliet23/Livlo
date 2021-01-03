@@ -1,5 +1,7 @@
 package com.livlo.livlo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +25,9 @@ public class Order implements Serializable {
     private double longuitude;
     private double latitude;
     private boolean delivred;
-    @OneToMany(mappedBy="order",cascade = CascadeType.ALL,fetch = FetchType.LAZY,
+    @OneToMany(mappedBy="order",cascade = CascadeType.ALL,
             orphanRemoval = true)
+    @JsonManagedReference
     private List<ProductsOrder> items;
     @ManyToOne
     @JoinColumn(name="client_id")
