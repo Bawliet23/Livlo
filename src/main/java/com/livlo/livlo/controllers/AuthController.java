@@ -53,10 +53,10 @@ public class AuthController{
 
         if (authentication.getPrincipal().getClass().getName().contains("MyClientDetails")){
             MyClientDetails userDetails = (MyClientDetails) authentication.getPrincipal();
-            return ResponseEntity.ok(new JwtResponse(jwt,userDetails.getUser().getId(),userDetails.getUser().getName(),userDetails.getUser().getPhone(),roles));
+            return ResponseEntity.ok(new JwtResponse(jwt,new User(userDetails.getUser().getId(),userDetails.getUser().getName(),userDetails.getUser().getPhone(),userDetails.getUser().getAdress(),userDetails.getUser().getLonguitude(),userDetails.getUser().getLatitude(),userDetails.getUser().getBirthday(),userDetails.getUser().getWarning(),userDetails.getUser().getStatus()),roles));
         }else if (authentication.getPrincipal().getClass().getName().contains("MyCourierDetails")){
             MyCourierDetails userDetails = (MyCourierDetails) authentication.getPrincipal();
-            return ResponseEntity.ok(new JwtResponse(jwt,userDetails.getUser().getId(),userDetails.getUser().getName(),userDetails.getUser().getPhone(),roles));
+            return ResponseEntity.ok(new JwtResponse(jwt,new User(userDetails.getUser().getId(),userDetails.getUser().getName(),userDetails.getUser().getPhone(),userDetails.getUser().getAdress(),userDetails.getUser().getLonguitude(),userDetails.getUser().getLatitude(),userDetails.getUser().getBirthday(),userDetails.getUser().getWarning(),userDetails.getUser().getStatus()),roles));
         }
 
         return null;

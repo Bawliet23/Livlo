@@ -26,7 +26,6 @@ public class JwtTokenValidator extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String headerauth = request.getHeader("Authorization");
-        System.out.println("wast mn jwt validator");
         if (headerauth==null || headerauth.isEmpty() || !headerauth.startsWith("Bearer ")){
             filterChain.doFilter(request,response);
             return;
