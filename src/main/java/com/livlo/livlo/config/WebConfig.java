@@ -20,13 +20,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
     @Autowired
     private SmsCodeAuthenticationProvider smsCodeAuthenticationProvider;
 
-//    @Autowired
-//    private MyUserDetailServise myUserDetailServise;
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -38,7 +36,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 //   addFilterBefore(new PhoneUserAuthenticationFilter(authenticationManager()),UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(new JwtTokenValidator(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/Auth/signIn","/Auth/signUp","index","/css/*","/js/*").permitAll()
+                .antMatchers("/Auth/signIn","/Auth/signUp","index","/images/*","/css/*","/js/*").permitAll()
                 .anyRequest().authenticated();
 
     }
