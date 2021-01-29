@@ -34,9 +34,5 @@ public class Product implements Serializable {
     public String getImage() {
         return Env.getUrlImages()+image;
     }
-//    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,fetch = FetchType.LAZY,
-//            orphanRemoval = true)
-//    private List<ProductsOrder> productsOrder;
-
 
 }

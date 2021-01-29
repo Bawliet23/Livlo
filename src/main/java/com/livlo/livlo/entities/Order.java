@@ -13,9 +13,6 @@ import java.util.List;
 
 @Entity
 @Table(name="orders")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "id")
-//@Proxy(lazy = false)
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class Order implements Serializable {
     @Id
