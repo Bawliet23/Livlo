@@ -33,17 +33,13 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                .and()
-                //   addFilterBefore(new PhoneUserAuthenticationFilter(authenticationManager()),UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(new JwtTokenValidator(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/Auth/signIn","/Auth/signUp","index","/images/*","/css/*","/js/*").permitAll()
+                .antMatchers("/Auth/signIn","/Auth/signUp","index","/images/**","/css/**","/js/**").permitAll()
                 .anyRequest().authenticated();
 
     }
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//      web.ignoring().antMatchers("**/signUp","index","/css/*","/js/*");
-//    }
+
    @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {

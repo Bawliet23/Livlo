@@ -1,5 +1,6 @@
 package com.livlo.livlo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +27,6 @@ public class Restaurant implements Serializable {
     private String image;
     @OneToMany(mappedBy="restaurant",cascade = CascadeType.ALL,fetch = FetchType.LAZY,
             orphanRemoval = true)
+    @JsonBackReference
     private List<Product> products;
 }

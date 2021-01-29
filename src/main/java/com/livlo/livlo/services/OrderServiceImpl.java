@@ -3,6 +3,7 @@ package com.livlo.livlo.services;
 import com.livlo.livlo.entities.Client;
 import com.livlo.livlo.entities.Order;
 import com.livlo.livlo.entities.Restaurant;
+import com.livlo.livlo.models.dto.OrderDTO;
 import com.livlo.livlo.reporsitories.IClientRepo;
 import com.livlo.livlo.reporsitories.IOrderRepo;
 import com.livlo.livlo.reporsitories.IRestaurantRepo;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("OrderService")
 public class OrderServiceImpl implements IOrderService {
@@ -40,9 +42,9 @@ public class OrderServiceImpl implements IOrderService {
 
 
     @Override
-    public List<Order> getOrdersByClient(Long id) {
+    public List<OrderDTO> getOrdersByClient(Long id) {
         Client client = clientRepo.findClientById(id);
-        return orderRepo.findByClient(client);
+        return ((List<Order>)orderRepo.findByClient(client)).stream().map(OrderDTO::new).collect(Collectors.toList());
     }
 
 

@@ -9,7 +9,6 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
-        System.out.println(registry.toString());
         registry.addResourceHandler("/images/**")
                 .addResourceLocations("classpath:/static/images/");
     }

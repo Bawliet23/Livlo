@@ -9,4 +9,5 @@ public interface IClientRepo extends JpaRepository<Client,Long> {
     Optional<Client> findClientByPhone(String phone);
     boolean existsClientByPhone(String phone);
     Client findClientById(Long id);
+    
 }

@@ -1,6 +1,8 @@
 package com.livlo.livlo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.livlo.livlo.utils.Env;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +28,12 @@ public class Product implements Serializable {
     private String description;
     @ManyToOne
     @JoinColumn(name="restaurant_id",nullable = false)
-    @JsonIgnore
+    @JsonManagedReference
     private Restaurant restaurant;
 
+    public String getImage() {
+        return Env.getUrlImages()+image;
+    }
 //    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,fetch = FetchType.LAZY,
 //            orphanRemoval = true)
 //    private List<ProductsOrder> productsOrder;

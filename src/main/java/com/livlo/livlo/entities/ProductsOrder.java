@@ -12,7 +12,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Proxy(lazy=true)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
+//@Proxy(lazy = false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,9 +27,9 @@ public class ProductsOrder implements Serializable {
     private int quantity;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="order_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Order order;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id" ,nullable = false)
     private Product product;
 }

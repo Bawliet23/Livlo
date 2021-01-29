@@ -2,6 +2,7 @@ package com.livlo.livlo.controllers;
 
 import com.livlo.livlo.entities.Client;
 import com.livlo.livlo.entities.Order;
+import com.livlo.livlo.models.dto.OrderDTO;
 import com.livlo.livlo.reporsitories.IClientRepo;
 import com.livlo.livlo.security.models.JwtResponse;
 import com.livlo.livlo.security.models.MyClientDetails;
@@ -10,6 +11,7 @@ import com.livlo.livlo.security.models.User;
 import com.livlo.livlo.security.tokens.SmsCodeAuthenticationToken;
 import com.livlo.livlo.services.IClientService;
 import com.livlo.livlo.services.IOrderService;
+import com.livlo.livlo.services.OrderServiceImpl;
 import com.livlo.livlo.utils.JwtUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,7 +44,7 @@ public class ClientController {
         orderService.confirmOrder(id);
     }
     @GetMapping("/{id}/orders")
-    public List<Order> getMyOrders(@PathVariable("id") Long id){
+    public List<OrderDTO> getMyOrders(@PathVariable("id") Long id){
         return orderService.getOrdersByClient(id);
     }
      @GetMapping("/{id}")

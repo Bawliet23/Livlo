@@ -1,7 +1,6 @@
 package com.livlo.livlo.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +12,10 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Proxy(lazy=true)
 @Table(name="orders")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
+//@Proxy(lazy = false)
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class Order implements Serializable {
     @Id
@@ -25,9 +26,9 @@ public class Order implements Serializable {
     private double longuitude;
     private double latitude;
     private boolean delivred;
-    @OneToMany(mappedBy="order",cascade = CascadeType.ALL,
+    @OneToMany(mappedBy="order",cascade = CascadeType.ALL,fetch = FetchType.EAGER,
             orphanRemoval = true)
-    @JsonManagedReference
+    @JsonBackReference
     private List<ProductsOrder> items;
     @ManyToOne
     @JoinColumn(name="client_id")
