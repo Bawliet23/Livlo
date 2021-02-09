@@ -26,9 +26,9 @@ public class Product implements Serializable {
     private String image;
     private double price;
     private String description;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="restaurant_id",nullable = false)
-    @JsonManagedReference
+    @JsonIgnore
     private Restaurant restaurant;
 
     public String getImage() {

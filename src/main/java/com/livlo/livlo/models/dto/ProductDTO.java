@@ -10,7 +10,6 @@ public class ProductDTO {
     private String image;
     private double price;
     private String description;
-    private String restaurant;
 
     public ProductDTO(Product p) {
         this.id = p.getId();
@@ -18,7 +17,6 @@ public class ProductDTO {
         this.image = p.getImage();
         this.price = p.getPrice();
         this.description = p.getDescription();
-        this.restaurant = p.getRestaurant().getName();
     }
 
 

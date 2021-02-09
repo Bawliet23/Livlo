@@ -23,8 +23,7 @@ public class Restaurant implements Serializable {
     private Long id;
     private String name;
     private String image;
-    @OneToMany(mappedBy="restaurant",cascade = CascadeType.ALL,fetch = FetchType.LAZY,
+    @OneToMany(mappedBy="restaurant",cascade = CascadeType.ALL,fetch = FetchType.EAGER,
             orphanRemoval = true)
-    @JsonBackReference
     private List<Product> products;
 }
