@@ -25,7 +25,6 @@ public class Order implements Serializable {
     private boolean delivred;
     @OneToMany(mappedBy="order",cascade = CascadeType.ALL,fetch = FetchType.EAGER,
             orphanRemoval = true)
-    @JsonBackReference
     private List<ProductsOrder> items;
     @ManyToOne
     @JoinColumn(name="client_id")

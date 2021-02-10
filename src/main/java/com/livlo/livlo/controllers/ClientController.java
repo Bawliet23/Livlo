@@ -13,6 +13,7 @@ import com.livlo.livlo.services.IClientService;
 import com.livlo.livlo.services.IOrderService;
 import com.livlo.livlo.services.OrderServiceImpl;
 import com.livlo.livlo.utils.JwtUtils;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -34,7 +35,7 @@ public class ClientController {
     private IOrderService orderService;
 
 
-    @PostMapping("/makeOrder")
+    @PostMapping(path = "/makeOrder",consumes = MediaType.APPLICATION_JSON_VALUE)
     public void makeOrder(@RequestBody Order order){
         orderService.makeOrder(order);
     }

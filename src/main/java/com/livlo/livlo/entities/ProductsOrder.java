@@ -23,7 +23,6 @@ public class ProductsOrder implements Serializable {
     private int quantity;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="order_id")
-    @JsonManagedReference
     private Order order;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id" ,nullable = false)
